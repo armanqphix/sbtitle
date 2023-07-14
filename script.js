@@ -42,6 +42,10 @@ var subtitleUrlRef = database.ref("user/");
 subtitleUrlRef.on("value", function (snapshot) {
   var subtitleUrl = snapshot.val().file;
   document.getElementById("subtitleTrack").src = subtitleUrl;
+  subtitleTrack.kind = "subtitles";
+  subtitleTrack.src = subtitleUrl;
+  subtitleTrack.srclang = "en";
+  subtitleTrack.label = "English";
 });
 var database = firebase.database();
 var imageUrlRef = database.ref("user");
