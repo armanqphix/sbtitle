@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Autoload Subtitle for MKV Video</title>
+  </head>
+  <body>
+    <form>
+      <input type="file" id="fileInput" accept=".vtt" />
+      <button type="submit">Upload</button>
+    </form>
+    <video controls id="imageElement">
+      <source src="" type="video/mp4" />
+      <track
+        id="subtitleTrack"
+        label="English"
+        kind="subtitles"
+        src=""
+        srclang="en"
+      />
+    </video>
+    <!--
+    <script>
+      const videoSource =
+        "https://api.onedrive.com/v1.0/shares/s!AtbDU6WSkdycoGa5ER_wfVYoXVdq/root/content";
+      const subtitleURL = "subtitle.vtt";
+      const subtitle = "sub.vtt";
+
+      const videoPlayer = document.getElementById("videoPlayer");
+
+      videoPlayer.src = videoSource;
+
+      videoPlayer.addEventListener("canplay", () => {
+        const subtitleTrack = document.createElement("track");
+        subtitleTrack.kind = "subtitles";
+        subtitleTrack.src = subtitleURL;
+        subtitleTrack.srclang = "en";
+        subtitleTrack.label = "English";
+
+        videoPlayer.appendChild(subtitleTrack);
+
+        subtitleTrack.mode = "showing";
+      });
+
+      videoPlayer.addEventListener("canplay", () => {
+        const subtitleTrack = document.createElement("track");
+        subtitleTrack.kind = "subtitles";
+        subtitleTrack.src = subtitle;
+        subtitleTrack.srclang = "ar";
+        subtitleTrack.label = "Arbi";
+
+        videoPlayer.appendChild(subtitleTrack);
+
+        subtitleTrack.mode = "showing";
+      });
+    </script>
+     -->
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
