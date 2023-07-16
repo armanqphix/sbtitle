@@ -36,30 +36,19 @@ document.querySelector("form").addEventListener("submit", function (event) {
 
   reader.readAsText(file);
 });
-
+var videoPlayer;
 var database = firebase.database();
 var imageUrlRef = database.ref("user");
 
 imageUrlRef.on("value", function (snapshot) {
   var videoplayer = document.getElementById("imageElement");
   videoplayer.src = snapshot.val().imageUrl;
-});
-videoPlayer.addEventListener("canplay", () => {
-  firebase
-    .database()
-    .ref("User/")
-    .once("value", function (snapshot) {
-      var subtitle = document.getElementById("subtitleTrack");
-      subtitle.src = snapshot.val().file;
-
-      const subtitleTrack = document.createElement("track");
-      subtitleTrack.kind = "subtitles";
-      subtitleTrack.src = subtitle;
-      subtitleTrack.srclang = "en";
-      subtitleTrack.label = "English";
-
-      videoPlayer.appendChild(subtitleTrack);
-
-      subtitleTrack.mode = "showing";
-    });
+  var subtitle = document.getElementById("subtitleTrack");
+  subtitle.src = snapshot.val().file;
+  const subtitleTrack = document.createElement("track");
+  subtitleTrack.kind = "subtitles";
+  subtitleTrack.src = subtitle;
+  subtitleTrack.subtitleTrack.srclang = "en";
+  subtitleTrack.label = "English";
+  videoPlayer.appendChild(subtitleTrack);
 });
