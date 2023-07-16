@@ -36,21 +36,30 @@ document.querySelector("form").addEventListener("submit", function (event) {
 
   reader.readAsText(file);
 });
-var database = firebase.database();
-var subtitleUrlRef = database.ref("user/");
 
-subtitleUrlRef.on("value", function (snapshot) {
-  var subtitleUrl = snapshot.val().file;
-  document.getElementById("subtitleTrack").src = subtitleUrl;
-  subtitleTrack.kind = "subtitles";
-  subtitleTrack.src = subtitleUrl;
-  subtitleTrack.srclang = "en";
-  subtitleTrack.label = "English";
-});
 var database = firebase.database();
 var imageUrlRef = database.ref("user");
 
 imageUrlRef.on("value", function (snapshot) {
-  var imageUrl = snapshot.val().imageUrl;
-  document.getElementById("imageElement").src = imageUrl;
+  var videoplayer = document.getElementById("imageElement");
+  videoplayer.src = snapshot.val().imageUrl;
+});
+videoPlayer.addEventListener("canplay", () => {
+  firebase
+    .database()
+    .ref("User/")
+    .once("value", function (snapshot) {
+      var subtitle = document.getElementById("subtitleTrack");
+      subtitle.src = snapshot.val().file;
+
+      const subtitleTrack = document.createElement("track");
+      subtitleTrack.kind = "subtitles";
+      subtitleTrack.src = subtitle;
+      subtitleTrack.srclang = "en";
+      subtitleTrack.label = "English";
+
+      videoPlayer.appendChild(subtitleTrack);
+
+      subtitleTrack.mode = "showing";
+    });
 });
